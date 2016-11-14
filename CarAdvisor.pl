@@ -2,14 +2,34 @@
     xpozytywne/2,
     xnegatywne/2.
 
-polecam(skoda_szkoda) :- klasa_miejskie(skoda_szkoda),
-    					niska_cena(skoda_szkoda).
+polecam(skoda_citigo) :- klasa_miejskie(skoda_citigo),
+    					bardzo_niska_cena(skoda_citigo).
 
-polecam(volvo_srolvo) :- klasa_kompaktowe(volvo_srolvo),
-    					umiarkowana_cena(volvo_srolvo).
+polecam(fiat_tipo) :- klasa_kompaktowe(fiat_tipo), niska_cena(fiat_tipo).
 
-polecam(lambo_bambo) :- klasa_sportowe(lambo_bambo),
-    					bardzo_wysoka_cena(lambo_bambo).
+polecam(seat_leon) :- klasa_kompaktowe(seat_leon), umiarkowana_cena(seat_leon).
+
+polecam(ford_focus_st) :- klasa_kompaktowe_sportowe(ford_focus_st), wysoka_cena(ford_focus_st), miasto_trasa(ford_focus_st).
+
+polecam(volvo_s80) :- klasa_wyzsza(volvo_s80),
+    					wysoka_cena(volvo_s80), miasto_trasa(volvo_s80).
+
+polecam(renault_espace) :- klasa_wyzsza(renault_espace), wysoka_cena(renault_espace), miasto_trasa(renault_espace), rodzinne(renault_espace).
+
+polecam(skoda_octavia) :- klasa_srednia(skoda_octavia), umiarkowana_cena(skoda_octavia).
+
+polecam(volkswagen_transporter) :- klasa_van(volkswagen_transporter), wysoka_cena(volkswagen_transporter).
+
+polecam(dacia_duster) :- klasa_suv(dacia_duster), umiarkowana_cena(dacia_duster), miasto_trasa_teren(dacia_duster).
+
+polecam(audi_q5) :- klasa_suv(audi_q5), wysoka_cena(audi_q5), miasto_trasa_teren(audi_q5).
+
+polecam(land_rover_evoque) :- klasa_suv(land_rover_evoque), klasa_luksusowe(land_rover_evoque), bardzo_wysoka_cena(land_rover_evoque).
+
+polecam(alfa_romeo_giulia_qv) :- klasa_sportowe(alfa_romeo_giulia_qv), klasa_wyzsza(alfa_romeo_giulia_qv), wysoka_cena(alfa_romeo_giulia_qv).
+
+polecam(lamborghini_gallardo) :- klasa_sportowe(lamborghini_gallardo), klasa_luksusowe(lamborghini_gallardo),
+    					bardzo_wysoka_cena(lamborghini_gallardo).
 
 klasa_miejskie(_) :- miejska_taniocha(_),
 					maly_smerf(_),
@@ -117,12 +137,12 @@ pytaj(X,Y,tak) :- !, format('~w : ~w ? (t/n)~n',[X,Y]),
                     read(Reply),
                     (Reply = 't'),
                     pamietaj(X,Y,tak).
-                    
+
 pytaj(X,Y,nie) :- !, format('~w : ~w ? (t/n)~n',[X,Y]),
                     read(Reply),
                     (Reply = 'n'),
                     pamietaj(X,Y,nie).
-                    
+
 pamietaj(X,Y,tak) :- assertz(xpozytywne(X,Y)).
 
 pamietaj(X,Y,nie) :- assertz(xnegatywne(X,Y)).
@@ -131,10 +151,10 @@ wyczysc_fakty :- write('Przycisnij cos aby wyjsc'), nl,
                     retractall(xpozytywne(_,_)),
                     retractall(xnegatywne(_,_)),
                     get_char(_).
-                    
+
 wykonaj :- polecam(X), !,
             format('~nPolecam samochod ~w', X),
             nl, wyczysc_fakty.
-            
+
 wykonaj :- write('Ogarnij sie. Taki samochod nie istnieje'), nl,
             wyczysc_fakty.
