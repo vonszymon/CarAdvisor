@@ -2,128 +2,128 @@
     xpozytywne/2,
     xnegatywne/2.
 
-polecam(skoda_citigo) :- klasa_miejskie(skoda_citigo),
-    					bardzo_niska_cena(skoda_citigo).
+polecam(skoda_citigo) :- klasa(miejskie),
+    					cena(bardzo_niska).
 
-polecam(fiat_tipo) :- klasa_kompaktowe(fiat_tipo), niska_cena(fiat_tipo).
+polecam(fiat_tipo) :- klasa(kompaktowe), cena(niska).
 
-polecam(seat_leon) :- klasa_kompaktowe(seat_leon), umiarkowana_cena(seat_leon).
+polecam(seat_leon) :- klasa(kompaktowe), cena(umiarkowana).
 
-polecam(ford_focus_st) :- klasa_kompaktowe_sportowe(ford_focus_st), wysoka_cena(ford_focus_st), miasto_trasa(ford_focus_st).
+polecam(ford_focus_st) :- klasa(kompaktowe_sportowe), cena(wysoka).
 
-polecam(volvo_s80) :- klasa_wyzsza(volvo_s80),
-    					wysoka_cena(volvo_s80), miasto_trasa(volvo_s80).
+polecam(volvo_s80) :- klasa(wyzsza),
+    					cena(wysoka).
 
-polecam(renault_espace) :- klasa_wyzsza(renault_espace), wysoka_cena(renault_espace), miasto_trasa(renault_espace), rodzinne(renault_espace).
+polecam(renault_espace) :- klasa(wyzsza), cena(wysoka).
 
-polecam(skoda_octavia) :- klasa_srednia(skoda_octavia), umiarkowana_cena(skoda_octavia).
+polecam(skoda_octavia) :- klasa(srednia), cena(umiarkowana).
 
-polecam(volkswagen_transporter) :- klasa_van(volkswagen_transporter), wysoka_cena(volkswagen_transporter).
+polecam(volkswagen_transporter) :- klasa(van), cena(wysoka).
 
-polecam(dacia_duster) :- klasa_suv(dacia_duster), umiarkowana_cena(dacia_duster), miasto_trasa_teren(dacia_duster).
+polecam(dacia_duster) :- klasa(suv), cena(umiarkowana).
 
-polecam(audi_q5) :- klasa_suv(audi_q5), wysoka_cena(audi_q5), miasto_trasa_teren(audi_q5).
+polecam(audi_q5) :- klasa(suv), cena(wysoka).
 
-polecam(land_rover_evoque) :- klasa_suv(land_rover_evoque), klasa_luksusowe(land_rover_evoque), bardzo_wysoka_cena(land_rover_evoque).
+polecam(land_rover_evoque) :- klasa(suv), klasa(luksusowe), cena(bardzo_wysoka).
 
-polecam(alfa_romeo_giulia_qv) :- klasa_sportowe(alfa_romeo_giulia_qv), klasa_wyzsza(alfa_romeo_giulia_qv), wysoka_cena(alfa_romeo_giulia_qv).
+polecam(alfa_romeo_giulia_qv) :- klasa(sportowe), klasa(wyzsza), cena(wysoka).
 
-polecam(lamborghini_gallardo) :- klasa_sportowe(lamborghini_gallardo), klasa_luksusowe(lamborghini_gallardo),
-    					bardzo_wysoka_cena(lamborghini_gallardo).
+polecam(lamborghini_gallardo) :- klasa(sportowe), klasa(luksusowe),
+    					cena(bardzo_wysoka).
 
-klasa_miejskie(_) :- miejska_taniocha(_),
-					maly_smerf(_),
+klasa_miejskie(_) :- funkcja(miejska_taniocha),
+					rozmiar(maly_smerf),
 					negatywne(ma, praktyczny_bagaznik).
 
-klasa_mikro(_) :- miejska_taniocha(_),
-				fistaszek(_),
+klasa_mikro(_) :- funkcja(miejska_taniocha),
+				rozmiar(fistaszek),
 				negatywne(ma, praktyczny_bagaznik).
 
 klasa_male(_) :- pozytywne(ma, praktyczny_bagaznik),
 				pozytywne(ma, miejsc_4),
-				miejska_taniocha(_),
-				maly_smerf(_).
+				funkcja(miejska_taniocha),
+				rozmiar(maly_smerf).
 
-klasa_kompaktowe(_) :- pozytywne(ma, miejsc_5),
-					miasto_trasa(_),
+klasa(kompaktowe) :- pozytywne(ma, miejsc_5),
+					przeznaczenie(miasto_trasa),
 					pozytywne(ma, praktyczny_bagaznik),
 					pozytywne(ma, srednie_wymiary).
 
-klasa_kompaktowe_sportowe(_) :- miasto_trasa(_),
+klasa(kompaktowe_sportowe) :- przeznaczenie(miasto_trasa),
 								negatywne(ma, praktyczny_bagaznik),
 								pozytywne(ma, srednie_wymiary),
-								szybka_bestia(_).
+								funkcja(szybka_bestia).
 
-klasa_srednia(_) :- pozytywne(ma, miejsc_5),
+klasa(srednia) :- pozytywne(ma, miejsc_5),
 					pozytywne(ma, duze_wymiary),
-					rodzinne(_),
-					miasto_trasa(_).
+					funkcja(rodzinne),
+					przeznaczenie(miasto_trasa).
 
-klasa_wyzsza(_) :- klasa_srednia(_),
+klasa(wyzsza) :- klasa(srednia),
 				pozytywne(ma, bogate_wyposazenie).
 
-klasa_luksusowe(_) :- klasa_wyzsza(_),
+klasa(luksusowe) :- klasa(wyzsza),
 					pozytywne(ma, duza_pojemnosc_silnika),
 					negatywne(ma, niskie_koszty_eksploatacji),
 					pozytywne(przeznaczenie, zazdrosc_sasiadow).
 
-klasa_sportowe(_) :- szybka_bestia(_),
+klasa(sportowe) :- funkcja(szybka_bestia),
 					pozytywne(ma, duza_pojemnosc_silnika),
 					pozytywne(przeznaczenie, zazdrosc_sasiadow),
-					miasto_trasa(_).
+					przeznaczenie(miasto_trasa).
 
-klasa_terenowe(_) :- teren(_),
+klasa(terenowe) :- przeznaczenie(teren),
 					negatywne(ma, bogate_wyposazenie),
 					negatywne(ma, komfort_jazdy),
 					negatywne(ma, niskie_koszty_eksploatacji).
 
-klasa_suv(_) :- miasto_trasa_teren(_),
+klasa(suv) :- przeznaczenie(miasto_trasa_teren),
 				pozytywne(ma, komfort_jazdy),
 				negatywne(ma, niskie_koszty_eksploatacji),
 				pozytywne(ma, bogate_wyposazenie).
 
-klasa_van(_) :- miasto_trasa(_),
+klasa(van) :- przeznaczenie(miasto_trasa),
 				pozytywne(ma, miejsc_5_wiecej),
-				rodzinne(_).
+				funkcja(rodzinne).
 
-miejska_taniocha(_) :- miasto(_),
+rozmiar(maly_smerf) :- pozytywne(ma, male_wymiary).
+rozmiar(maly_smerf) :- pozytywne(ma, mala_pojemnosc_silnika).
+
+rozmiar(fistaszek) :- pozytywne(ma, bardzo_male_wymiary).
+rozmiar(fistaszek) :- pozytywne(ma, bardzo_mala_pojemnosc_silnika).
+
+funkcja(miejska_taniocha) :- przeznaczenie(miasto),
 					pozytywne(ma, niskie_koszty_eksploatacji).
 
-miejska_taniocha(_) :- miasto(_),
+funkcja(miejska_taniocha) :- przeznaczenie(miasto),
 					negatywne(ma, wysokie_osiagi),
 					negatywne(ma, bogate_wyposazenie).
 
-maly_smerf(_) :- pozytywne(ma, male_wymiary).
-maly_smerf(_) :- pozytywne(ma, mala_pojemnosc_silnika).
-
-fistaszek(_) :- pozytywne(ma, bardzo_male_wymiary).
-fistaszek(_) :-	pozytywne(ma, bardzo_mala_pojemnosc_silnika).
-
-szybka_bestia(_) :- pozytywne(ma, wysokie_osiagi),
+funkcja(szybka_bestia) :- pozytywne(ma, wysokie_osiagi),
 					negatywne(ma, niskie_koszty_eksploatacji).
 
-rodzinne(_) :- pozytywne(ma, obszerny_bagaznik),
+funkcja(rodzinne) :- pozytywne(ma, obszerny_bagaznik),
 			pozytywne(ma, komfort_jazdy).
 
-miasto_trasa_teren(_) :- miasto_trasa(_),
+przeznaczenie(miasto_trasa_teren) :- przeznaczenie(miasto_trasa),
 						pozytywne(przeznaczenie, trasa).
 
-miasto_trasa(_) :- pozytywne(przeznaczenie, miasto),
+przeznaczenie(miasto_trasa) :- pozytywne(przeznaczenie, miasto),
 					pozytywne(przeznaczenie, trasa).
 
-miasto(_) :- pozytywne(przeznaczenie, miasto),
+przeznaczenie(miasto) :- pozytywne(przeznaczenie, miasto),
 			negatywne(przeznaczenie, trasa),
 			negatywne(przeznaczenie, teren).
 
-teren(_) :- pozytywne(przeznaczenie, teren),
+przeznaczenie(teren) :- pozytywne(przeznaczenie, teren),
 			negatywne(przeznaczenie, miasto),
 			negatywne(przeznaczenie, trasa).
 
-bardzo_wysoka_cena(_) :- pozytywne(ma, bardzo_wysoka_cena).
-wysoka_cena(_) :- bardzo_wysoka_cena(_); pozytywne(ma, wysoka_cena).
-umiarkowana_cena(_) :- bardzo_wysoka_cena(_); wysoka_cena(_); pozytywne(ma, umiarkowana_cena).
-niska_cena(_) :-bardzo_wysoka_cena(_); wysoka_cena(_); umiarkowana_cena(_); pozytywne(ma, niska_cena).
-bardzo_niska_cena(_) :- bardzo_wysoka_cena(_); wysoka_cena(_); umiarkowana_cena(_); niska_cena(_); pozytywne(ma, bardzo_niska_cena).
+cena(bardzo_wysoka) :- pozytywne(ma, bardzo_wysoka_cena).
+cena(wysoka) :- cena(bardzo_wysoka); pozytywne(ma, wysoka_cena).
+cena(umiarkowana) :- cena(bardzo_wysoka); cena(wysoka); pozytywne(ma, umiarkowana_cena).
+cena(niska) :- cena(bardzo_wysoka); cena(wysoka); cena(umiarkowana); pozytywne(ma, niska_cena).
+cena(bardzo_niska) :- cena(bardzo_wysoka); cena(wysoka); cena(umiarkowana); cena(niska); pozytywne(ma, bardzo_niska_cena).
 
 pozytywne(X,Y) :- xpozytywne(X,Y), !.
 
