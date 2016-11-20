@@ -125,36 +125,12 @@ cena(umiarkowana) :- cena(bardzo_wysoka); cena(wysoka); pozytywne(ma, umiarkowan
 cena(niska) :- cena(bardzo_wysoka); cena(wysoka); cena(umiarkowana); pozytywne(ma, niska_cena).
 cena(bardzo_niska) :- cena(bardzo_wysoka); cena(wysoka); cena(umiarkowana); cena(niska); pozytywne(ma, bardzo_niska_cena).
 
+test(any) :- pozytywne(test, pass).
+
 pozytywne(X,Y) :- xpozytywne(X,Y), !.
 
-pozytywne(X,Y) :- \+xnegatywne(X,Y), pytaj(X,Y,tak).
-
 negatywne(X,Y) :- xnegatywne(X,Y), !.
-
-negatywne(X,Y) :- \+xpozytywne(X,Y), pytaj(X,Y,nie).
-
-pytaj(X,Y,tak) :- !, format('~w : ~w ? (t/n)~n',[X,Y]),
-                    read(Reply),
-                    (Reply = 't'),
-                    pamietaj(X,Y,tak).
-
-pytaj(X,Y,nie) :- !, format('~w : ~w ? (t/n)~n',[X,Y]),
-                    read(Reply),
-                    (Reply = 'n'),
-                    pamietaj(X,Y,nie).
 
 pamietaj(X,Y,tak) :- assertz(xpozytywne(X,Y)).
 
 pamietaj(X,Y,nie) :- assertz(xnegatywne(X,Y)).
-
-wyczysc_fakty :- write('Przycisnij cos aby wyjsc'), nl,
-                    retractall(xpozytywne(_,_)),
-                    retractall(xnegatywne(_,_)),
-                    get_char(_).
-
-wykonaj :- polecam(X), !,
-            format('~nPolecam samochod ~w', X),
-            nl, wyczysc_fakty.
-
-wykonaj :- write('Ogarnij sie. Taki samochod nie istnieje'), nl,
-            wyczysc_fakty.
