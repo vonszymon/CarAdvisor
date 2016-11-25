@@ -31,15 +31,15 @@ polecam(alfa_romeo_giulia_qv) :- klasa(sportowe), klasa(wyzsza), cena(wysoka).
 polecam(lamborghini_gallardo) :- klasa(sportowe), klasa(luksusowe),
     					cena(bardzo_wysoka).
 
-klasa_miejskie(_) :- funkcja(miejska_taniocha),
+klasa(miejskie) :- funkcja(miejska_taniocha),
 					rozmiar(maly_smerf),
 					negatywne(ma, praktyczny_bagaznik).
 
-klasa_mikro(_) :- funkcja(miejska_taniocha),
+klasa(mikro) :- funkcja(miejska_taniocha),
 				rozmiar(fistaszek),
 				negatywne(ma, praktyczny_bagaznik).
 
-klasa_male(_) :- pozytywne(ma, praktyczny_bagaznik),
+klasa(male) :- pozytywne(ma, praktyczny_bagaznik),
 				pozytywne(ma, miejsc_4),
 				funkcja(miejska_taniocha),
 				rozmiar(maly_smerf).
@@ -134,3 +134,6 @@ negatywne(X,Y) :- xnegatywne(X,Y), !.
 pamietaj(X,Y,tak) :- assertz(xpozytywne(X,Y)).
 
 pamietaj(X,Y,nie) :- assertz(xnegatywne(X,Y)).
+
+wyczysc_fakty :- retractall(xpozytywne(_,_)),
+				retractall(xnegatywne(_,_)).
