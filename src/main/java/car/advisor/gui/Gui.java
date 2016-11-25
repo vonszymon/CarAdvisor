@@ -8,6 +8,11 @@ import javax.swing.ButtonGroup;
  * Created by Janusz on 21-11-2016.
  */
 public class Gui {
+
+    public static void main(String[] args) {
+        Gui.run();
+    }
+
     protected static void run () {
         String ceny[] = { "bardzo_wysoka", "wysoka", "umiarkowana", "niska","bardzo_niska" };
         String przeznaczenia[] = { "miasto_trasa_teren", "miasto_trasa", "miasto", "teren", "trasa" };
