@@ -1,7 +1,7 @@
 package car.advisor.test;
-import org.jpl7.Atom;
-import org.jpl7.Query;
-import org.jpl7.Term;
+import jpl.Atom;
+import jpl.Query;
+import jpl.Term;
 
 public class CarAdvisorTestJPLApi {
 
