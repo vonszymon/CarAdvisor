@@ -34,14 +34,17 @@ polecam(volkswagen_transporter) :- klasa(van), cena(wysoka).
 
 polecam(dacia_duster) :- klasa(suv),
 						pozytywne(ma, miejsc_5),
+						pozytywne(ma, obszerny_bagaznik),
 						cena(umiarkowana).
 
 polecam(audi_q5) :- klasa(suv),
 					pozytywne(ma, miejsc_5),
+					pozytywne(ma, obszerny_bagaznik),
 					cena(wysoka).
 
 polecam(land_rover_evoque) :- klasa(suv),
 							pozytywne(ma, miejsc_5),
+							pozytywne(ma, praktyczny_bagaznik),
 							cena(bardzo_wysoka).
 
 polecam(alfa_romeo_giulia_qv) :- klasa(sportowe), klasa(wyzsza), cena(wysoka).
@@ -149,8 +152,6 @@ cena(wysoka) :- cena(bardzo_wysoka); pozytywne(ma, wysoka_cena).
 cena(umiarkowana) :- cena(bardzo_wysoka); cena(wysoka); pozytywne(ma, umiarkowana_cena).
 cena(niska) :- cena(bardzo_wysoka); cena(wysoka); cena(umiarkowana); pozytywne(ma, niska_cena).
 cena(bardzo_niska) :- cena(bardzo_wysoka); cena(wysoka); cena(umiarkowana); cena(niska); pozytywne(ma, bardzo_niska_cena).
-
-test(any) :- pozytywne(test, pass).
 
 pozytywne(X,Y) :- xpozytywne(X,Y), !.
 
