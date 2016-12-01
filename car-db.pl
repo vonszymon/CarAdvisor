@@ -2,55 +2,77 @@
     xpozytywne/2,
     xnegatywne/2.
 
-polecam(skoda_citigo) :- klasa(miejskie), pozytywne(ma, miejsc_4),
+polecam(skoda_citigo) :- klasa(miejskie),
+						pozytywne(ma, miejsc_4),
+						funkcja(nic_specjalnego),
     					cena(bardzo_niska).
 
-polecam(fiat_tipo) :- klasa(kompaktowe), 
-					pozytywne(ma, srednia_pojemnosc_silnika),
-					cena(niska).
+polecam(fiat_tipo) :- klasa(kompaktowe),
+						pozytywne(ma, srednia_pojemnosc_silnika),
+    					pozytywne(ma, niskie_koszty_eksploatacji),
+						funkcja(nic_specjalnego),
+						cena(niska).
 
 polecam(seat_leon) :- klasa(kompaktowe),
-					pozytywne(ma, srednia_pojemnosc_silnika),
-					cena(umiarkowana).
+						negatywne(ma, komfort_jazdy),
+						negatywne(ma, bogate_wyposazenie),
+						pozytywne(ma, srednia_pojemnosc_silnika),
+						funkcja(ani_tanio_ani_szybko),
+						cena(umiarkowana).
 
 polecam(ford_focus_st) :- klasa(kompaktowe_sportowe),
 						pozytywne(ma, miejsc_5),
 						pozytywne(ma, bardzo_duza_pojemnosc_silnika),
+    					negatywne(ma, komfort_jazdy),
+                        negatywne(ma, bogate_wyposazenie),
 						cena(wysoka).
 
 polecam(volvo_s80) :- klasa(wyzsza),
-					pozytywne(ma, bardzo_duza_pojemnosc_silnika),
+						funkcja(ani_tanio_ani_szybko),
+						pozytywne(ma, bardzo_duza_pojemnosc_silnika),
     					cena(wysoka).
 
 polecam(renault_espace) :- klasa(wyzsza),
-						pozytywne(ma, srednia_pojemnosc_silnika),
+							funkcja(ani_tanio_ani_szybko),
+							pozytywne(ma, srednia_pojemnosc_silnika),
 							cena(wysoka).
 
 polecam(skoda_octavia) :- klasa(srednia),
-						pozytywne(ma, duza_pojemnosc_silnika),
-						cena(umiarkowana).
+							funkcja(ani_tanio_ani_szybko),
+    						negatywne(ma, bogate_wyposazenie),
+							pozytywne(ma, duza_pojemnosc_silnika),
+							cena(umiarkowana).
 
-polecam(volkswagen_transporter) :- klasa(van), cena(wysoka).
+polecam(volkswagen_transporter) :- klasa(van),
+									funkcja(ani_tanio_ani_szybko),
+									negatywne(ma, bogate_wyposazenie),
+    								cena(wysoka).
 
 polecam(dacia_duster) :- klasa(suv),
 						pozytywne(ma, miejsc_5),
 						pozytywne(ma, obszerny_bagaznik),
+    					negatywne(ma, wysokie_osiagi),
 						cena(umiarkowana).
 
 polecam(audi_q5) :- klasa(suv),
 					pozytywne(ma, miejsc_5),
 					pozytywne(ma, obszerny_bagaznik),
+    				negatywne(ma, wysokie_osiagi),
 					cena(wysoka).
 
 polecam(land_rover_evoque) :- klasa(suv),
 							pozytywne(ma, miejsc_5),
 							pozytywne(ma, praktyczny_bagaznik),
+    						negatywne(ma, wysokie_osiagi),
 							cena(bardzo_wysoka).
 
-polecam(alfa_romeo_giulia_qv) :- klasa(sportowe), klasa(wyzsza), cena(wysoka).
+polecam(alfa_romeo_giulia_qv) :- klasa(sportowe),
+    							klasa(wyzsza),
+    							cena(wysoka).
 
-polecam(lamborghini_gallardo) :- klasa(sportowe), klasa(luksusowe),
-    					cena(bardzo_wysoka).
+polecam(lamborghini_gallardo) :- klasa(sportowe),
+    							klasa(luksusowe),
+    							cena(bardzo_wysoka).
 
 klasa(miejskie) :- funkcja(miejska_taniocha),
 					rozmiar(maly_smerf),
@@ -133,11 +155,20 @@ funkcja(szybka_bestia) :- pozytywne(ma, wysokie_osiagi),
 funkcja(rodzinne) :- pozytywne(ma, obszerny_bagaznik),
 			pozytywne(ma, komfort_jazdy).
 
-przeznaczenie(miasto_trasa_teren) :- przeznaczenie(miasto_trasa),
-						pozytywne(przeznaczenie, trasa).
+funkcja(ani_tanio_ani_szybko) :- negatywne(ma, wysokie_osiagi),
+								negatywne(ma, niskie_koszty_eksploatacji).
+
+funkcja(nic_specjalnego) :- negatywne(ma, komfort_jazdy),
+						negatywne(ma, wysokie_osiagi),
+						negatywne(ma, bogate_wyposazenie).
+
+przeznaczenie(miasto_trasa_teren) :- pozytywne(przeznaczenie, miasto),
+									pozytywne(przeznaczenie, trasa),
+									pozytywne(przeznaczenie, teren).
 
 przeznaczenie(miasto_trasa) :- pozytywne(przeznaczenie, miasto),
-					pozytywne(przeznaczenie, trasa).
+					pozytywne(przeznaczenie, trasa),
+					negatywne(przeznaczenie, teren).
 
 przeznaczenie(miasto) :- pozytywne(przeznaczenie, miasto),
 			negatywne(przeznaczenie, trasa),
