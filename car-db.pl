@@ -76,30 +76,36 @@ polecam(lamborghini_gallardo) :- klasa(sportowe),
 
 klasa(miejskie) :- funkcja(miejska_taniocha),
 					rozmiar(maly_smerf),
-					negatywne(ma, praktyczny_bagaznik).
+					negatywne(ma, praktyczny_bagaznik),
+                    negatywne(przeznaczenie, zazdrosc_sasiadow).
 
 klasa(mikro) :- funkcja(miejska_taniocha),
 				rozmiar(fistaszek),
+				negatywne(przeznaczenie, zazdrosc_sasiadow),
 				negatywne(ma, praktyczny_bagaznik).
 
 klasa(male) :- pozytywne(ma, praktyczny_bagaznik),
 				pozytywne(ma, miejsc_4),
 				funkcja(miejska_taniocha),
+				negatywne(przeznaczenie, zazdrosc_sasiadow),
 				rozmiar(maly_smerf).
 
 klasa(kompaktowe) :- pozytywne(ma, miejsc_5),
 					przeznaczenie(miasto_trasa),
 					pozytywne(ma, praktyczny_bagaznik),
+					negatywne(przeznaczenie, zazdrosc_sasiadow),
 					pozytywne(ma, srednie_wymiary).
 
 klasa(kompaktowe_sportowe) :- przeznaczenie(miasto_trasa),
 								negatywne(ma, praktyczny_bagaznik),
 								pozytywne(ma, srednie_wymiary),
+    							negatywne(przeznaczenie, zazdrosc_sasiadow),
 								funkcja(szybka_bestia).
 
 klasa(srednia) :- pozytywne(ma, miejsc_5),
 					pozytywne(ma, duze_wymiary),
 					funkcja(rodzinne),
+					negatywne(przeznaczenie, zazdrosc_sasiadow),
 					przeznaczenie(miasto_trasa).
 
 klasa(wyzsza) :- klasa(srednia),
@@ -120,17 +126,20 @@ klasa(terenowe) :- przeznaczenie(teren),
 					negatywne(ma, bogate_wyposazenie),
 					negatywne(ma, komfort_jazdy),
 					negatywne(ma, niskie_koszty_eksploatacji),
+    				negatywne(przeznaczenie, zazdrosc_sasiadow),
     				rozmiar(bulldog).
 
 klasa(suv) :- przeznaczenie(miasto_trasa_teren),
 				pozytywne(ma, komfort_jazdy),
 				negatywne(ma, niskie_koszty_eksploatacji),
 				pozytywne(ma, bogate_wyposazenie),
+    			negatywne(przeznaczenie, zazdrosc_sasiadow),
     			rozmiar(bulldog).
 
 klasa(van) :- przeznaczenie(miasto_trasa),
 				pozytywne(ma, miejsc_5_wiecej),
 				funkcja(rodzinne),
+				negatywne(przeznaczenie, zazdrosc_sasiadow),
     			rozmiar(bulldog).
 
 rozmiar(maly_smerf) :- pozytywne(ma, male_wymiary),
