@@ -242,6 +242,36 @@ public class Gui {
 			wysokieOsiagiGroup.add(radioButton);
 		}
 
+		first = true;
+		JPanel maDuzyZasiegPanel = new JPanel();
+		maDuzyZasiegPanel.setBorder(BorderFactory
+				.createTitledBorder("Ma duzy zasieg"));
+		final ButtonGroup maDuzyZasiegGroup = new ButtonGroup();
+		for(boolean aLogiczny : logiczny) {
+			maDuzyZasiegPanel.add(radioButton = new JRadioButton(String.valueOf(aLogiczny)));
+			radioButton.setActionCommand(String.valueOf(aLogiczny));
+			if(first) {
+				radioButton.setSelected(true);
+				first = false;
+			}
+			maDuzyZasiegGroup.add(radioButton);
+		}
+
+		first = true;
+		JPanel typSilnikaPanel = new JPanel();
+		typSilnikaPanel.setBorder(BorderFactory
+				.createTitledBorder("Typ silnika"));
+		final ButtonGroup typSilnikaGroup = new ButtonGroup();
+		for(Feature typSilnika : Features.typSilnika) {
+			typSilnikaPanel.add(radioButton = new JRadioButton(String.valueOf(typSilnika.label)));
+			radioButton.setActionCommand(String.valueOf(typSilnika.value));
+			if(first) {
+				radioButton.setSelected(true);
+				first = false;
+			}
+			typSilnikaGroup.add(radioButton);
+		}
+
 		frame.setLayout(new GridLayout(5, 1));
 		frame.add(cenyPanel);
 		frame.add(pojemnosciSilnikaPanel);
@@ -256,6 +286,8 @@ public class Gui {
 		frame.add(komfortJazdyPanel);
 		frame.add(niskieKosztyEksploatacjiPanel);
 		frame.add(wysokieOsiagiPanel);
+		frame.add(maDuzyZasiegPanel);
+		frame.add(typSilnikaPanel);
 
 		JPanel carAdvisorPanel = new JPanel();
 		JButton chooseButton = new JButton("Szukaj");
@@ -299,6 +331,8 @@ public class Gui {
 							.getActionCommand()));
 			preferences.setWysokieOsiagi(Boolean.valueOf(wysokieOsiagiGroup
 					.getSelection().getActionCommand()));
+			preferences.setMaDuzyZasieg(Boolean.valueOf(maDuzyZasiegGroup.getSelection().getActionCommand()));
+			preferences.setTypSilnika(typSilnikaGroup.getSelection().getActionCommand());
 			db.find(preferences);
 			String chosenCar = db.find(preferences);
 			JOptionPane.showMessageDialog(frame, chosenCar);

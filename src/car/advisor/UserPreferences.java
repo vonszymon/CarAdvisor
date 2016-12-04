@@ -17,6 +17,8 @@ public class UserPreferences {
     private boolean komfortJazdy;
     private boolean niskieKosztyEksploatacji;
     private boolean wysokieOsiagi;
+    private String typSilnika;
+    private boolean maDuzyZasieg;
 
     public String getCena() {
         return cena;
@@ -135,6 +137,24 @@ public class UserPreferences {
                 + "\nBogate wyposazenie: " + String.valueOf(this.bogateWyposazenie)
                 + "\nKomfort jazdy: " + String.valueOf(this.komfortJazdy)
                 + "\nNiskie koszty eksploatacji: " + String.valueOf(this.niskieKosztyEksploatacji)
-                + "\nWysokie osiagi: "  + String.valueOf(this.wysokieOsiagi);
+                + "\nWysokie osiagi: "  + String.valueOf(this.wysokieOsiagi)
+                + "\nTyp silnika: " + String.valueOf(this.typSilnika)
+                + "\nMa duzy zasieg" + String.valueOf(this.maDuzyZasieg);
+    }
+
+    public boolean maDuzyZasieg() {
+        return maDuzyZasieg;
+    }
+
+    public void setMaDuzyZasieg(boolean maDuzyZasieg) {
+        this.maDuzyZasieg = maDuzyZasieg;
+    }
+
+    public String getTypSilnika() {
+        return typSilnika;
+    }
+
+    public void setTypSilnika(String typSilnika) {
+        this.typSilnika = typSilnika;
     }
 }

@@ -27,5 +27,11 @@ public class Features {
 			new Feature("srednie", "srednie_wymiary"),
 			new Feature("male", "male_wymiary"),
 			new Feature("bardzo male", "bardzo_male_wymiary") };
+	public static final Feature typSilnika[] = {
+			new Feature("benzyna", "silnik_benzynowy"),
+			new Feature("diesel", "silnik_diesla"),
+			new Feature("hybryda", "silnik_hybrydowy"),
+			new Feature("elektryczny", "silnik_elektryczny")
+	};
 
 }

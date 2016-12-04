@@ -36,10 +36,12 @@ public class CarDatabase {
 		setKosztyEksploatacji(prefs.isNiskieKosztyEksploatacji());
 		setWysokieOsiagi(prefs.isWysokieOsiagi());
 		setBagaznik(prefs.getBagaznik());
+		setDuzyZasieg(prefs.maDuzyZasieg());
 		setMultiFeature(prefs.getCena());
 		setMultiFeature(prefs.getIloscMiejsc());
 		setMultiFeature(prefs.getPojemnoscSilnika());
 		setMultiFeature(prefs.getWymiary());
+		setMultiFeature(prefs.getTypSilnika());
 	}
 
 	private void clearPreferences() {
@@ -101,6 +103,11 @@ public class CarDatabase {
 	private void setWysokieOsiagi(Boolean value) {
 		new Query("pamietaj", new Term[] { new Atom("ma"),
 				new Atom("wysokie_osiagi"), new Atom(boolString.get(value)) })
+				.hasSolution();
+	}
+
+	private void setDuzyZasieg(Boolean value) {
+		new Query("pamietaj", new Term[] {new Atom("ma"), new Atom("duzy_zasieg"), new Atom(boolString.get(value))})
 				.hasSolution();
 	}
 
