@@ -1,5 +1,7 @@
 package car.advisor.database;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.jpl7.Atom;
@@ -50,11 +52,19 @@ public class CarDatabase {
 
 	private String findMatching() {
 		Query searchCar = new Query("polecam(X)");
-		Map<String, Term> solution = searchCar.oneSolution();
-		if (solution == null)
-			return "Nie znaleziono takiego samochodu";
-		else
-			return "Moze " + solution.get("X").name() + " ?";
+		Map<String, Term> solutions[] = searchCar.allSolutions();
+		List<String> distinctResult = new LinkedList<>();
+		for (Map<String, Term> solution : solutions) {
+			String name = solution.get("X").name();
+			if (!distinctResult.contains(name))
+				distinctResult.add(name);
+		}
+		String resultString = "Znaleziono " + distinctResult.size()
+				+ " samochody:\n";
+		for (String name : distinctResult) {
+			resultString += name + "\n";
+		}
+		return resultString;
 	}
 
 	private void setPrzeznaczenieMiasto(Boolean value) {
@@ -107,7 +117,8 @@ public class CarDatabase {
 	}
 
 	private void setDuzyZasieg(Boolean value) {
-		new Query("pamietaj", new Term[] {new Atom("ma"), new Atom("duzy_zasieg"), new Atom(boolString.get(value))})
+		new Query("pamietaj", new Term[] { new Atom("ma"),
+				new Atom("duzy_zasieg"), new Atom(boolString.get(value)) })
 				.hasSolution();
 	}
 
